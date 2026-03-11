@@ -1,4 +1,4 @@
-Got it! I’ve cleaned up your README markdown, fixed formatting issues, aligned everything properly, and made the **environment setup, getting started, build, contributing, and license sections** structured and readable. Here’s the full fixed version:
+Perfect! Here’s your **full README.md** with the screenshots using a proper `<table>` layout and all your previous formatting polished:
 
 ````markdown
 <p align="center">
@@ -58,11 +58,26 @@ Main packages used in the project:
 
 ## 📷 Screenshots
 
-| ![1](screenshots/1.png) | ![2](screenshots/2.png) | ![3](screenshots/3.png) |
-|--------------------------|-------------------------|-------------------------|
-| ![4](screenshots/4.png) | ![5](screenshots/5.png) | ![6](screenshots/6.png) |
-| ![7](screenshots/7.png) | ![8](screenshots/8.png) | ![9](screenshots/9.png) |
-| ![10](screenshots/10.png) | |
+<table>
+  <tr>
+    <td><img src="screenshots/1.png" width="200" alt="1"></td>
+    <td><img src="screenshots/2.png" width="200" alt="2"></td>
+    <td><img src="screenshots/3.png" width="200" alt="3"></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/4.png" width="200" alt="4"></td>
+    <td><img src="screenshots/5.png" width="200" alt="5"></td>
+    <td><img src="screenshots/6.png" width="200" alt="6"></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/7.png" width="200" alt="7"></td>
+    <td><img src="screenshots/8.png" width="200" alt="8"></td>
+    <td><img src="screenshots/9.png" width="200" alt="9"></td>
+  </tr>
+  <tr>
+    <td colspan="3" align="center"><img src="screenshots/10.png" width="200" alt="10"></td>
+  </tr>
+</table>
 
 ---
 
@@ -74,6 +89,8 @@ Create a `.env` file in the root directory:
 SUPABASE_URL=your_supabase_url
 SUPABASE_ANON_KEY=your_supabase_anon_key
 ````
+
+⚠️ Make sure to replace the placeholders with your actual Supabase credentials.
 
 ---
 
@@ -122,8 +139,6 @@ This project is licensed under the **MIT License**.
 
 ## 📥 Download
 
-* [Download APK file](https://upload.app/download/vibely/com.shimu.vibely/e200e7ee153f0acf142a0b8dc919ae8d8b9442f7f85427952a5b87b0ae85a706/)
+* [Download APK file](https://upload.app/download/vibely/com.shimu.vibely/2031c92248c7a072d58a156de6e966d21ef91ec2d1c731459ef8a12abfdc607a)
 * [Download AAB file](https://drive.google.com/file/d/13Y0eLCixW07Sv8ahzt1GNJeMwO4iaCIF/view?usp=sharing)
-
-```
 
