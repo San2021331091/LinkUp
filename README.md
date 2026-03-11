@@ -1,6 +1,3 @@
-Perfect! Here’s your **full README.md** with the screenshots using a proper `<table>` layout and all your previous formatting polished:
-
-````markdown
 <p align="center">
   <img src="assets/icon.png" width="120" alt="Vibely Logo">
 </p>
