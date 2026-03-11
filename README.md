@@ -1,7 +1,9 @@
 <p align="center">
   <img src="assets/icon.png" width="120" alt="Vibely Logo">
 </p>
-
+<p align="center">
+  <strong>Vibely</strong> – A Flutter-based online video sharing social networking app.
+</p>
 ---
 
 ## 🚀 Features
