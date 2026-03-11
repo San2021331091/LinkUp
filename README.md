@@ -74,7 +74,7 @@ Main packages used in the project:
     <td><img src="screenshots/9.png" width="200" alt="9"></td>
   </tr>
   <tr>
-    <td colspan="3" align="center"><img src="screenshots/10.png" width="200" alt="10"></td>
+    <td rowspan="3" align="center"><img src="screenshots/10.png" width="200" alt="10"></td>
   </tr>
 </table>
 
