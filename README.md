@@ -4,7 +4,6 @@
 <p align="center">
   <strong>Vibely</strong> – A Flutter-based online video sharing social networking app.
 </p>
----
 
 ## 🚀 Features
 
