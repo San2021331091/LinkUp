@@ -15,8 +15,9 @@ class ForYouVideoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(VideoFeedController());
+    controller.fetchVideos();
     final currentUserId = SupabaseAuth.supabase.auth.currentUser?.id ?? "";
-     Get.put(CommentController(), permanent: true);
+    Get.put(CommentController(), permanent: true);
     return Scaffold(
       backgroundColor: Colors.black,
       body: Obx(() {
@@ -72,7 +73,10 @@ class ForYouVideoScreen extends StatelessWidget {
 
                         /// Hide follow button for your own video
                         if (video.userId != currentUserId)
-                          FollowButton(targetUserId: video.userId!,currentUserId: currentUserId,),
+                          FollowButton(
+                            targetUserId: video.userId!,
+                            currentUserId: currentUserId,
+                          ),
 
                         const SizedBox(height: 20),
                       ],

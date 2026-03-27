@@ -246,6 +246,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
 
               const SizedBox(height: 30),
+              //See your dashboard
+              ElevatedButton.icon(
+                onPressed: () {
+                  openLink("https://go-user-earning.onrender.com/user_earning?user_id=$currentUserId");
+                },
+                icon: const Icon(Icons.dashboard),
+                label: Text(
+                  "See ${isMe ? "your ": " "}personal dashboard",
+                  style: GoogleFonts.acme(
+                    fontSize: 16,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 30),
 
               /// VIDEO GRID
               Obx(() {

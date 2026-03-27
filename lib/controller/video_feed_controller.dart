@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vibely/models/video.dart';
 import 'package:vibely/models/user.dart';
+import 'package:vibely/models/members_earning.dart';
 import 'package:vibely/authentication/supabase_auth.dart';
 
 class VideoFeedController extends GetxController {
@@ -10,7 +11,6 @@ class VideoFeedController extends GetxController {
   RxBool isLoading = false.obs;
   RxSet<String> likedVideos = <String>{}.obs;
 
-  /// Cache users
   RxMap<String, User> usersCache = <String, User>{}.obs;
 
   @override
@@ -19,7 +19,7 @@ class VideoFeedController extends GetxController {
     fetchVideos();
   }
 
-  /// Fetch videos
+  /// Fetch all videos
   Future<void> fetchVideos() async {
     try {
       isLoading.value = true;
@@ -48,7 +48,7 @@ class VideoFeedController extends GetxController {
     }
   }
 
-  /// Fetch user
+  /// Fetch a single user
   Future<User?> getUser(String uid) async {
     if (usersCache.containsKey(uid)) return usersCache[uid];
 
@@ -95,57 +95,12 @@ class VideoFeedController extends GetxController {
           .from('videos')
           .update({"likes_count": newLikes})
           .eq("id", videoId);
+
+      await updateVideoEarnings(videoId, index);
     } catch (e) {
       debugPrint("Error updating likes_count: $e");
     }
   }
-  Future<void> fetchFollowingVideos() async {
-  try {
-    isLoading.value = true;
-
-    final currentUser = supabase.auth.currentUser;
-    if (currentUser == null) return;
-
-    /// get current user
-    final userData = await supabase
-        .from('users')
-        .select()
-        .eq('uid', currentUser.id)
-        .maybeSingle();
-
-    if (userData == null) return;
-
-    List following = userData['following'] ?? [];
-
-    if (following.isEmpty) {
-      videos.clear();
-      return;
-    }
-
-    /// fetch videos only from followed users
-    final response = await supabase
-        .from('videos')
-        .select()
-        .inFilter('user_id', following)
-        .order('created_at', ascending: false);
-
-    final videoList =
-        (response as List).map((e) => Video.fromJson(e)).toList();
-
-    videos.assignAll(videoList);
-
-    /// prefetch users
-    for (var video in videoList) {
-      if (video.userId != null && !usersCache.containsKey(video.userId)) {
-        getUser(video.userId!);
-      }
-    }
-  } catch (e) {
-    debugPrint("Following Video Fetch Error: $e");
-  } finally {
-    isLoading.value = false;
-  }
-}
 
   /// Increment comments
   Future<void> incrementCommentsCount(String videoId) async {
@@ -156,8 +111,6 @@ class VideoFeedController extends GetxController {
     final newCount = (video.commentsCount ?? 0) + 1;
 
     videos[index] = video.copyWith(commentsCount: newCount);
-
-    /// important
     videos.refresh();
 
     try {
@@ -165,12 +118,14 @@ class VideoFeedController extends GetxController {
           .from('videos')
           .update({"comments_count": newCount})
           .eq("id", videoId);
+
+      await updateVideoEarnings(videoId, index);
     } catch (e) {
       debugPrint("Error updating comments_count: $e");
     }
   }
 
-  /// Decrement comments (when deleted)
+  /// Decrement comments
   Future<void> decrementCommentsCount(String videoId) async {
     final index = videos.indexWhere((v) => v.id == videoId);
     if (index == -1) return;
@@ -178,10 +133,7 @@ class VideoFeedController extends GetxController {
     final video = videos[index];
     final newCount = (video.commentsCount ?? 0) - 1;
 
-    videos[index] = video.copyWith(
-      commentsCount: newCount.clamp(0, 999999),
-    );
-
+    videos[index] = video.copyWith(commentsCount: newCount.clamp(0, 999999));
     videos.refresh();
 
     try {
@@ -189,19 +141,90 @@ class VideoFeedController extends GetxController {
           .from('videos')
           .update({"comments_count": newCount})
           .eq("id", videoId);
+
+      await updateVideoEarnings(videoId, index);
     } catch (e) {
       debugPrint("Error updating comments_count: $e");
     }
   }
+
+  /// Fetch videos from following users
+  Future<void> fetchFollowingVideos() async {
+    try {
+      isLoading.value = true;
+
+      final currentUser = supabase.auth.currentUser;
+      if (currentUser == null) return;
+
+      final userData = await supabase
+          .from('users')
+          .select()
+          .eq('uid', currentUser.id)
+          .maybeSingle();
+
+      if (userData == null) return;
+
+      List<String> following = List<String>.from(userData['following'] ?? []);
+
+      if (following.isEmpty) {
+        videos.clear();
+        return;
+      }
+      final response = await supabase
+          .from('videos')
+          .select()
+          .inFilter('user_id', following)
+          .order('created_at', ascending: false);
+
+      final videoList = (response as List)
+          .map((e) => Video.fromJson(e))
+          .toList();
+
+      videos.assignAll(videoList);
+
+      for (var video in videoList) {
+        if (video.userId != null && !usersCache.containsKey(video.userId)) {
+          getUser(video.userId!);
+        }
+      }
+    } catch (e) {
+      debugPrint("Following Video Fetch Error: $e");
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  /// ------------------------
+  /// MEMBER EARNINGS LOGIC
+  /// ------------------------
+
+  Future<void> updateVideoEarnings(String videoId, int index) async {
+    final video = videos[index];
+
+    final earnings = MemberEarnings(
+      videoId: videoId,
+      userId: video.userId,
+      likesEarning: (video.likesCount ?? 0) * 0.05,
+      commentsEarning: (video.commentsCount ?? 0) * 0.10,
+      totalEarning:
+          ((video.likesCount ?? 0) * 0.05) +
+          ((video.commentsCount ?? 0) * 0.10),
+      updatedAt: DateTime.now(),
+    );
+
+    try {
+      await supabase
+          .from('member_earnings')
+          .upsert(earnings.toJson(), onConflict: "video_id");
+    } catch (e) {
+      debugPrint("Error updating earnings: $e");
+    }
+  }
 }
 
-
-
+/// Video copyWith extension
 extension VideoCopyWith on Video {
-  Video copyWith({
-    int? likesCount,
-    int? commentsCount,
-  }) {
+  Video copyWith({int? likesCount, int? commentsCount}) {
     return Video(
       id: id,
       artistSongName: artistSongName,

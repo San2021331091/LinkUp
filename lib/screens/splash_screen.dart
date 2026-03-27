@@ -87,7 +87,7 @@ class _SplashScreenState extends State<SplashScreen>
                 child: ScaleTransition(
                   scale: _logoScale,
                   child: Image.network(
-                    'https://i.postimg.cc/43x9pbgL/vibely.png',
+                    'https://i.postimg.cc/Kz8dtTvf/Line-Up.png',
                     width: 200,
                     height: 200,
                   ),

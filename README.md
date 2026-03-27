@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="assets/icon.png" width="120" alt="Vibely Logo">
+  <img src="assets/icon.png" width="120" alt="LineUp Logo">
 </p>
 <p align="center">
-  <strong>Vibely</strong> – A Flutter-based online video sharing social networking app.
+  <strong>LineUp</strong> – A Flutter-based online video sharing social networking app.
 </p>
 
 ## 🚀 Features
@@ -97,8 +97,8 @@ SUPABASE_ANON_KEY=your_supabase_anon_key
 ### 1️⃣ Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/vibely.git
-cd vibely
+git clone https://github.com/San2021331091/LineUp.git
+cd LineUp
 ```
 
 ### 2️⃣ Install dependencies
@@ -122,6 +122,101 @@ flutter build apk --release
 ```
 
 ---
+
+## 💰 User Earnings Dashboard (Go Backend)
+
+This project includes a lightweight **Go backend service** to fetch and display user earnings from Supabase.
+
+### ✨ Features
+
+* 📊 Fetch user earnings per video
+* ❤️ Earnings from likes
+* 💬 Earnings from comments
+* 🧾 Total earnings calculation
+* 🖼️ Video thumbnail + title display
+* 👤 User profile info included
+* ⚡ Fast REST API using Go
+
+---
+
+## 🔗 API Endpoint
+
+```
+GET /user_earning?user_id=YOUR_USER_ID
+```
+
+---
+
+## 🖥️ Dashboard UI
+
+The Go server renders an HTML dashboard:
+
+```
+/templates/user_earning.html
+```
+
+It shows:
+
+* 🎬 Video preview (thumbnail)
+* 🎵 Video title
+* 💰 Earnings breakdown
+* 📅 Last updated time
+* 👤 User info
+
+---
+
+## ⚙️ Run Go Server
+
+### 1️⃣ Install Go
+
+Make sure Go is installed:
+
+```
+go version
+```
+
+---
+
+### 2️⃣ Run Server
+
+```bash
+go run main.go
+```
+
+---
+
+### 3️⃣ Open in Browser
+
+```
+http://localhost:8500/user_earning?user_id=YOUR_USER_ID
+```
+
+---
+
+## 🔐 Environment Variables
+
+Update your Go file:
+
+```go
+const supabaseURL = "your supabase url"
+const supabaseKey = "your supabase anon key"
+```
+
+---
+
+## 🧠 How It Works
+
+* Go server calls **Supabase REST API**
+* Joins:
+
+  * `member_earnings`
+  * `videos`
+  * `users`
+* Uses custom JSON parsing for flexible responses
+* Renders data using Go templates
+
+---
+
 
 ## 🤝 Contributing
 

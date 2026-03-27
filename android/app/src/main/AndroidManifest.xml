@@ -9,20 +9,21 @@
     <!-- Storage (Android <=12) -->
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32"/>
+        android:maxSdkVersion="32" />
 
     <!-- Android 13+ -->
-    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO"/>
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
     <application
-        android:label="Vibely"
+        android:label="LineUp"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="Your Admob App ID"/>
+            android:value="ca-app-pub-1792751776820513~7584578876" />
+        
 
         <activity
             android:name=".MainActivity"
@@ -35,7 +36,7 @@
 
             <meta-data
                 android:name="io.flutter.embedding.android.NormalTheme"
-                android:resource="@style/NormalTheme"/>
+                android:resource="@style/NormalTheme" />
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
