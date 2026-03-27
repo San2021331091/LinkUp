@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+<head>
+  <meta charset="UTF-8">
+  <title>User Earnings Dashboard</title>
+
+  <!-- Tailwind + DaisyUI -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.0.0/dist/full.css" rel="stylesheet" />
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="bg-base-200 min-h-screen p-6">
+
+<div class="max-w-7xl mx-auto space-y-6">
+
+  <!-- Header -->
+  <div class="flex justify-between items-center">
+    <h1 class="text-3xl font-bold">💰 Earnings Dashboard</h1>
+    <div class="badge badge-primary p-4 text-white">Live</div>
+  </div>
+
+  <!-- Stats -->
+  <div class="grid md:grid-cols-3 gap-4">
+    <div class="stat bg-base-100 rounded-xl shadow">
+      <div class="stat-title">Total Earnings</div>
+      <div class="stat-value text-success">
+        ${{with index . 0}}{{.TotalEarning}}{{end}}
+      </div>
+    </div>
+
+    <div class="stat bg-base-100 rounded-xl shadow">
+      <div class="stat-title">Likes</div>
+      <div class="stat-value text-info">
+        ${{with index . 0}}{{.LikesEarning}}{{end}}
+      </div>
+    </div>
+
+    <div class="stat bg-base-100 rounded-xl shadow">
+      <div class="stat-title">Comments</div>
+      <div class="stat-value text-warning">
+        ${{with index . 0}}{{.CommentsEarning}}{{end}}
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart -->
+  <div class="bg-base-100 p-6 rounded-2xl shadow">
+    <h2 class="text-lg mb-4 font-semibold">📊 Earnings Overview</h2>
+    <div class="h-[350px]">
+      <canvas id="earningsChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="bg-base-100 rounded-2xl shadow p-4 overflow-x-auto">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Video</th>
+          <th>Artist</th>
+          <th>User</th>
+          <th>Likes</th>
+          <th>Comments</th>
+          <th>Total</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {{range .}}
+        <tr class="hover">
+
+          <!-- VIDEO (Thumbnail + Title) -->
+          <td>
+            <div class="flex items-center gap-3">
+              <div class="avatar">
+                <div class="w-16 rounded-lg">
+                  <img src="{{(index .Videos 0).ThumbnailURL}}" />
+                </div>
+              </div>
+              <div>
+                <div class="font-bold text-sm">
+                  {{(index .Videos 0).ArtistSongName}}
+                </div>
+                <div class="text-xs opacity-50">
+                  ID: {{.VideoID}}
+                </div>
+              </div>
+            </div>
+          </td>
+
+          <!-- ARTIST -->
+          <td class="text-sm opacity-80">
+            {{(index .Videos 0).ArtistSongName}}
+          </td>
+
+          <!-- USER -->
+          <td>
+            <span class="font-semibold">
+              {{(index .Users 0).Name}}
+            </span>
+          </td>
+
+          <!-- EARNINGS -->
+          <td class="text-info font-medium">
+            ${{.LikesEarning}}
+          </td>
+
+          <td class="text-warning font-medium">
+            ${{.CommentsEarning}}
+          </td>
+
+          <td class="text-success font-bold">
+            ${{.TotalEarning}}
+          </td>
+
+          <!-- DATE -->
+          <td class="text-xs opacity-60">
+            {{.UpdatedAt}}
+          </td>
+
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- Chart Script -->
+<script>
+  const labels = [];
+  const totalData = [];
+  const likesData = [];
+  const commentsData = [];
+
+  {{range .}}
+    labels.push("{{(index .Videos 0).ArtistSongName}}");
+    totalData.push({{.TotalEarning}});
+    likesData.push({{.LikesEarning}});
+    commentsData.push({{.CommentsEarning}});
+  {{end}}
+
+  const ctx = document.getElementById('earningsChart').getContext('2d');
+
+  const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+  gradient.addColorStop(0, "rgba(34,197,94,0.5)");
+  gradient.addColorStop(1, "rgba(34,197,94,0)");
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Total',
+          data: totalData,
+          borderColor: '#22c55e',
+          backgroundColor: gradient,
+          fill: true,
+          tension: 0.4
+        },
+        {
+          label: 'Likes',
+          data: likesData,
+          borderColor: '#3b82f6',
+          tension: 0.4
+        },
+        {
+          label: 'Comments',
+          data: commentsData,
+          borderColor: '#f59e0b',
+          tension: 0.4
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          labels: { color: "#ccc" }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: "#aaa" },
+          grid: { color: "rgba(255,255,255,0.05)" }
+        },
+        y: {
+          ticks: { color: "#aaa" },
+          grid: { color: "rgba(255,255,255,0.05)" }
+        }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
