@@ -232,6 +232,6 @@ This project is licensed under the **MIT License**.
 
 ## 📥 Download
 
-* [Download APK file](https://upload.app/download/vibely/com.shimu.vibely/2031c92248c7a072d58a156de6e966d21ef91ec2d1c731459ef8a12abfdc607a)
-* [Download AAB file](https://drive.google.com/file/d/13Y0eLCixW07Sv8ahzt1GNJeMwO4iaCIF/view?usp=sharing)
+* [Download APK file](https://upload.app/download/lineup/com.shimu.vibely/9e3da784317c86c87e77197d51a32ee6e96080aeb9e64429b8311291d6c2946c)
+* [Download AAB file](https://drive.google.com/file/d/126dbeg_yPYtt6hBVp24-gYc2x92SPH_w/view?usp=sharing)
 
