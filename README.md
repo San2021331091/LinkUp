@@ -125,7 +125,7 @@ flutter build apk --release
 
 ## 💰 User Earnings Dashboard (Go Backend)
 
-This project includes a lightweight **Go backend service** to fetch and display user earnings from Supabase.
+This project includes a lightweight **Go based backend service** to fetch and display user earnings from Supabase.
 
 ### ✨ Features
 
