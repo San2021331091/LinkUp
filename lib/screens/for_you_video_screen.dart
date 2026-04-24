@@ -148,7 +148,7 @@ class ForYouVideoScreen extends StatelessWidget {
                             SharePlus.instance.share(
                               ShareParams(
                                 text:
-                                    "Watch this video on Vibely 🔥\n${video.videoUrl}",
+                                    "Watch this video online🔥\n${video.videoUrl}",
                               ),
                             );
                           }

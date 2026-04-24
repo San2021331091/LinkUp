@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="assets/icon.png" width="120" alt="LineUp Logo">
+  <img src="assets/icon.png" width="120" alt="LinkUp Logo">
 </p>
 <p align="center">
-  <strong>LineUp</strong> – A Flutter-based online video sharing social networking app.
+  <strong>LinkUp</strong> – A Flutter-based online video sharing social networking app.
 </p>
 
 ## 🚀 Features
@@ -97,8 +97,8 @@ SUPABASE_ANON_KEY=your_supabase_anon_key
 ### 1️⃣ Clone the repository
 
 ```bash
-git clone https://github.com/San2021331091/LineUp.git
-cd LineUp
+git clone https://github.com/San2021331091/LinkUp.git
+cd LinkUp
 ```
 
 ### 2️⃣ Install dependencies

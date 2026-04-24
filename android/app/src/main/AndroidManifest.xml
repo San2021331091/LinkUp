@@ -16,13 +16,13 @@
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
     <application
-        android:label="LineUp"
+        android:label="LinkUp"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-1792751776820513~7584578876" />
+            android:value="Place Your app id" />
         
 
         <activity
