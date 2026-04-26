@@ -238,5 +238,5 @@ This project is licensed under the **MIT License**.
 
 ## 📥 Download
 
-- [Download APK file](https://drive.google.com/file/d/13jI1hoIzL3XCrgKikCuOlGVATyw1vuqv/view?usp=sharing)
-- [Download AAB file](https://drive.google.com/file/d/1bHxrqD_6UwbjNQqqunXaUVEW0KpA7_kI/view?usp=sharing)
+- [Download APK file](https://drive.google.com/file/d/17Kxcc1zUM6o81JwvKfVqVSdABMYTMm-Y/view?usp=sharing)
+- [Download AAB file](https://drive.google.com/file/d/15-MeC4Au4x_JbvH_U_Ox8IWewaeao0Ll/view?usp=sharing)
