@@ -7,16 +7,16 @@
 
 ## 🚀 Features
 
-* 📹 Upload and share short videos
-* 🎬 Video compression before upload
-* 🖼️ Automatic video thumbnails
-* ▶️ Built-in video player
-* 🔗 Share videos externally
-* 🔐 Supabase authentication & database
-* 📊 Ad integration with Google Mobile Ads
-* 🌐 External link launching
-* 🎨 Custom fonts with Google Fonts
-* ⚡ State management with GetX
+- 📹 Upload and share short videos
+- 🎬 Video compression before upload
+- 🖼️ Automatic video thumbnails
+- ▶️ Built-in video player
+- 🔗 Share videos externally
+- 🔐 Supabase authentication & database
+- 📊 Ad integration with Google Mobile Ads
+- 🌐 External link launching
+- 🎨 Custom fonts with Google Fonts
+- ⚡ State management with GetX
 
 ---
 
@@ -39,18 +39,18 @@
 
 Main packages used in the project:
 
-* `supabase_flutter`
-* `get`
-* `dio`
-* `image_picker`
-* `video_player`
-* `video_compress`
-* `video_thumbnail`
-* `share_plus`
-* `google_mobile_ads`
-* `google_fonts`
-* `font_awesome_flutter`
-* `url_launcher`
+- `supabase_flutter`
+- `get`
+- `dio`
+- `image_picker`
+- `video_player`
+- `video_compress`
+- `video_thumbnail`
+- `share_plus`
+- `google_mobile_ads`
+- `google_fonts`
+- `font_awesome_flutter`
+- `url_launcher`
 
 ---
 
@@ -72,8 +72,15 @@ Main packages used in the project:
     <td><img src="screenshots/8.png" width="200" alt="8"></td>
     <td><img src="screenshots/9.png" width="200" alt="9"></td>
   </tr>
-  <tr>
-    <td rowspan="3" align="center"><img src="screenshots/10.png" width="200" alt="10"></td>
+ <tr>
+    <td><img src="screenshots/10.png" width="200" alt="10"></td>
+    <td><img src="screenshots/11.png" width="200" alt="11"></td>
+    <td><img src="screenshots/12.png" width="200" alt="12"></td>
+  </tr>
+   <tr>
+    <td><img src="screenshots/13.png" width="200" alt="13"></td>
+    <td><img src="screenshots/14.png" width="200" alt="14"></td>
+    <td><img src="screenshots/15.png" width="200" alt="15"></td>
   </tr>
 </table>
 
@@ -86,7 +93,7 @@ Create a `.env` file in the root directory:
 ```env
 SUPABASE_URL=your_supabase_url
 SUPABASE_ANON_KEY=your_supabase_anon_key
-````
+```
 
 ⚠️ Make sure to replace the placeholders with your actual Supabase credentials.
 
@@ -129,13 +136,13 @@ This project includes a lightweight **Go based real backend service** to fetch a
 
 ### ✨ Features
 
-* 📊 Fetch user earnings per video
-* ❤️ Earnings from likes
-* 💬 Earnings from comments
-* 🧾 Total earnings calculation
-* 🖼️ Video thumbnail + title display
-* 👤 User profile info included
-* ⚡ Fast REST API using Go
+- 📊 Fetch user earnings per video
+- ❤️ Earnings from likes
+- 💬 Earnings from comments
+- 🧾 Total earnings calculation
+- 🖼️ Video thumbnail + title display
+- 👤 User profile info included
+- ⚡ Fast REST API using Go
 
 ---
 
@@ -157,11 +164,11 @@ The Go server renders an HTML dashboard:
 
 It shows:
 
-* 🎬 Video preview (thumbnail)
-* 🎵 Video title
-* 💰 Earnings breakdown
-* 📅 Last updated time
-* 👤 User info
+- 🎬 Video preview (thumbnail)
+- 🎵 Video title
+- 💰 Earnings breakdown
+- 📅 Last updated time
+- 👤 User info
 
 ---
 
@@ -206,17 +213,16 @@ const supabaseKey = "your supabase anon key"
 
 ## 🧠 How It Works
 
-* Go server calls **Supabase REST API**
-* Joins:
+- Go server calls **Supabase REST API**
+- Joins:
+  - `member_earnings`
+  - `videos`
+  - `users`
 
-  * `member_earnings`
-  * `videos`
-  * `users`
-* Uses custom JSON parsing for flexible responses
-* Renders data using Go templates
+- Uses custom JSON parsing for flexible responses
+- Renders data using Go templates
 
 ---
-
 
 ## 🤝 Contributing
 
@@ -232,6 +238,5 @@ This project is licensed under the **MIT License**.
 
 ## 📥 Download
 
-* [Download APK file](https://drive.google.com/file/d/13jI1hoIzL3XCrgKikCuOlGVATyw1vuqv/view?usp=sharing)
-* [Download AAB file](https://drive.google.com/file/d/1bHxrqD_6UwbjNQqqunXaUVEW0KpA7_kI/view?usp=sharing)
-
+- [Download APK file](https://drive.google.com/file/d/13jI1hoIzL3XCrgKikCuOlGVATyw1vuqv/view?usp=sharing)
+- [Download AAB file](https://drive.google.com/file/d/1bHxrqD_6UwbjNQqqunXaUVEW0KpA7_kI/view?usp=sharing)

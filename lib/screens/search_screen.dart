@@ -13,14 +13,13 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
 
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: const Color.fromARGB(255, 52, 134, 175),
         title: Container(
           height: 45,
           decoration: BoxDecoration(
-            color: Colors.grey[900],
+            color: const Color.fromARGB(255, 45, 90, 128),
             borderRadius: BorderRadius.circular(10),
           ),
           child: TextField(
@@ -48,7 +47,7 @@ class SearchScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Image.network(
-                'https://i.postimg.cc/NjzYFyb6/search.png',
+                'https://i.postimg.cc/PxC3sXZH/search.png',
                 fit: BoxFit.contain,
                 width: MediaQuery.of(context).size.width * 0.6,
               
@@ -73,11 +72,11 @@ class SearchScreen extends StatelessWidget {
               ),
               subtitle: Text(
                 user.email ?? "",
-                style: const TextStyle(color: Colors.grey),
+                style: const TextStyle(color: Colors.white),
               ),
               trailing: const Icon(
                 Icons.arrow_forward_ios,
-                color: Colors.red,
+                color: Colors.white,
                 size: 18,
               ),
               onTap: () {

@@ -42,8 +42,7 @@ class InputTextWidget extends StatelessWidget {
 
           suffixIcon: suffixIcon,
 
-          labelStyle: const TextStyle(fontSize: 18),
-
+          labelStyle: const TextStyle(fontSize: 20,color: Colors.white),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(6),
             borderSide: const BorderSide(color: Colors.blueGrey),

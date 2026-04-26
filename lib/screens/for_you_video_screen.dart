@@ -19,7 +19,6 @@ class ForYouVideoScreen extends StatelessWidget {
     final currentUserId = SupabaseAuth.supabase.auth.currentUser?.id ?? "";
     Get.put(CommentController(), permanent: true);
     return Scaffold(
-      backgroundColor: Colors.black,
       body: Obx(() {
         if (controller.isLoading.value) {
           return const Center(child: CircularProgressIndicator());

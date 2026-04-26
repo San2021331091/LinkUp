@@ -55,13 +55,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   "Create Account",
                   style: GoogleFonts.acme(
                     fontSize: 34,
-                    color: Colors.grey,
+                    color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
                   "To Get Started Now!",
-                  style: GoogleFonts.aBeeZee(fontSize: 34, color: Colors.grey),
+                  style: GoogleFonts.aBeeZee(fontSize: 34, color: Colors.white),
                 ),
 
                 const SizedBox(height: 16),
@@ -86,7 +86,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   icon: const Icon(
                     Icons.camera_alt,
                     size: 40,
-                    color: Colors.grey,
+                    color: Colors.white,
                   ),
                   onPressed: () {
                     showModalBottomSheet(
@@ -185,7 +185,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             size: 160,
                             progressStrokeWidth: 80, // makes it look filled
                             backStrokeWidth: 80,
-                            backColor: Colors.blueGrey,
+                            backColor: Colors.white,
                             progressColors: [
                               Colors.purple,
                               Colors.blue,
@@ -229,8 +229,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   children: [
                     Text(
                       "Already have an account?",
-                      style: GoogleFonts.abhayaLibre(
-                        color: Colors.grey,
+                      style: GoogleFonts.aBeeZee(
+                        color: Colors.white,
                         fontSize: 20,
                       ),
                     ),

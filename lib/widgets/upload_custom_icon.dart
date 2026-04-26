@@ -14,7 +14,7 @@ class UploadCustomIcon extends StatelessWidget {
             margin: EdgeInsets.only(left: 12),
             width: 48,
             decoration: BoxDecoration(
-              color: Color.fromARGB(255, 250, 45, 108),
+              color: Color.fromARGB(255, 101, 15, 223),
               borderRadius: BorderRadius.circular(8),
             ),
           ),

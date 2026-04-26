@@ -6,8 +6,8 @@ import 'package:vibely/screens/profile_screen.dart';
 import 'package:vibely/screens/search_screen.dart';
 import 'package:vibely/screens/upload_video_screen.dart';
 import 'package:vibely/widgets/banner_widget.dart';
+import 'package:vibely/widgets/linkup_ai_wi8dget.dart';
 import 'package:vibely/widgets/upload_custom_icon.dart';
-
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -38,16 +38,28 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blue,
+        child: const Icon(Icons.chat_bubble_outline, color: Colors.white),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const LinkUpAIView()),
+          );
+        },
+      ),
+
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
           setState(() {
             screenIndex = index;
           });
         },
+        backgroundColor: Colors.blueAccent,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.black,
         selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white12,
+        unselectedItemColor: Color(0xFFFAF9F6),
         currentIndex: screenIndex,
         items: const [
           BottomNavigationBarItem(
@@ -58,10 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.search, size: 30),
             label: "Discover",
           ),
-          BottomNavigationBarItem(
-            icon: UploadCustomIcon(),
-            label: "Upload",
-          ),
+          BottomNavigationBarItem(icon: UploadCustomIcon(), label: "Upload"),
           BottomNavigationBarItem(
             icon: Icon(Icons.inbox_sharp, size: 30),
             label: "Following",
@@ -74,9 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Column(
         children: [
-          Expanded(
-            child: screenList[screenIndex],
-          ),
+          Expanded(child: screenList[screenIndex]),
           const BannerAdWidget(),
         ],
       ),

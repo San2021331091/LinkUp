@@ -61,14 +61,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   "Welcome",
                   style: GoogleFonts.acme(
                     fontSize: 34,
-                    color: Colors.grey,
+                    color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
 
                 Text(
                   "Glad to see you!",
-                  style: GoogleFonts.aBeeZee(fontSize: 34, color: Colors.grey),
+                  style: GoogleFonts.aBeeZee(fontSize: 34, color: Colors.white),
                 ),
 
                 const SizedBox(height: 30),
@@ -121,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             size: 160,
                             progressStrokeWidth: 80, // makes it look filled
                             backStrokeWidth: 80,
-                            backColor: Colors.blueGrey,
+                            backColor: Colors.white,
                             progressColors: [
                               Colors.purple,
                               Colors.blue,
@@ -162,8 +162,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               children: [
                                 Text(
                                   "Don't have an account?",
-                                  style: GoogleFonts.abhayaLibre(
-                                    color: Colors.grey,
+                                  style: GoogleFonts.aBeeZee(
+                                    color: Colors.white,
                                     fontSize: 20,
                                   ),
                                 ),

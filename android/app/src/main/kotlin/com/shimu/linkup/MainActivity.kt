@@ -1,4 +1,4 @@
-package com.shimu.vibely
+package com.shimu.linkup
 
 import io.flutter.embedding.android.FlutterActivity
 

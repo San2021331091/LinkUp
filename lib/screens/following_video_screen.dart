@@ -26,7 +26,6 @@ class FollowingVideoScreen extends StatelessWidget {
     });
 
     return Scaffold(
-      backgroundColor: Colors.black,
       body: Obx(() {
         if (controller.isLoading.value) {
           return const Center(child: CircularProgressIndicator());

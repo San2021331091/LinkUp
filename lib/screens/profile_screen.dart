@@ -130,9 +130,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final videoItemSize = (screenWidth - 8) / 3;
 
     return Scaffold(
-      backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.black,
         title: Text(
           "Profile",
           style: GoogleFonts.acme(
@@ -227,7 +225,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   onPressed: () {
                     controller.signOut();
                   },
-                  icon: const Icon(Icons.logout),
+                  icon: const Icon(Icons.logout, color: Colors.white),
                   label: Text(
                     "Logout",
                     style: GoogleFonts.acme(
@@ -249,11 +247,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
               //See your dashboard
               ElevatedButton.icon(
                 onPressed: () {
-                  openLink("https://go-user-earning.onrender.com/user_earning?user_id=$currentUserId");
+                  openLink(
+                    "https://go-user-earning.onrender.com/user_earning?user_id=$currentUserId",
+                  );
                 },
-                icon: const Icon(Icons.dashboard),
+                icon: const Icon(Icons.dashboard,color: Colors.white,),
                 label: Text(
-                  "See ${isMe ? "your ": " "}personal dashboard",
+                  isMe
+                      ? "See your personal dashboard"
+                      : "See ${user.name ?? currentUserId}'s personal dashboard",
                   style: GoogleFonts.acme(
                     fontSize: 16,
                     color: Colors.white,
@@ -261,14 +263,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
+                  backgroundColor: const Color.fromARGB(255, 3, 61, 109),
                   padding: const EdgeInsets.symmetric(
                     horizontal: 20,
                     vertical: 10,
                   ),
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 90),
 
               /// VIDEO GRID
               Obx(() {
@@ -327,7 +329,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(title, style: const TextStyle(color: Colors.grey)),
+        Text(title, style: const TextStyle(color: Colors.white)),
       ],
     );
   }

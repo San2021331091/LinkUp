@@ -101,7 +101,7 @@ class _UploadVideoScreenState extends State<UploadVideoScreen> {
               onPressed: () {
                 displayDialogBox();
               },
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+              style: ElevatedButton.styleFrom(backgroundColor: const Color.fromARGB(255, 16, 90, 150)),
               child: Text(
                 "Upload New Video",
                 style: GoogleFonts.acme(
