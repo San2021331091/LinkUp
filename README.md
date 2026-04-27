@@ -2,7 +2,7 @@
   <img src="assets/icon.png" width="120" alt="LinkUp Logo">
 </p>
 <p align="center">
-  <strong>LinkUp</strong> – A Flutter-based online video sharing social networking app.
+  <strong>LinkUp</strong> – A Flutter-based AI-powered online video sharing social networking app.
 </p>
 
 ## 🚀 Features
@@ -17,7 +17,7 @@
 - 🌐 External link launching
 - 🎨 Custom fonts with Google Fonts
 - ⚡ State management with GetX
-
+- 🤖 Integration with AI-powered chatbot
 ---
 
 ## 🛠️ Tech Stack
