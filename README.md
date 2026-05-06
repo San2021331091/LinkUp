@@ -365,6 +365,7 @@ const supabaseKey = "your supabase anon key"
 ---
 
 [User Earning Dashboard Link](https://go-user-earning.onrender.com/)
+---
 
 ## 🤝 Contributing
 
