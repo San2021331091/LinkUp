@@ -130,6 +130,141 @@ flutter build apk --release
 
 ---
 
+
+
+# 📘LinkUp admin panel
+
+A simple admin panel built with **AdminJS**, **Express**, and **Sequelize**, connected to a **Supabase Postgres** database.
+
+---
+
+## 🚀 Features
+
+* 🔐 Admin authentication (session-based)
+* 📊 Custom dashboard component
+* 👤 User management
+* 🎬 Video management
+* 💰 Member earnings tracking
+* 🎨 Custom branding (logo + theme colors)
+* ⚡ Hot reload in development
+
+---
+
+## 📦 Tech Stack
+
+* Node.js (v20+)
+* Express
+* AdminJS
+* Sequelize
+* Supabase (PostgreSQL)
+
+---
+
+## 📁 Project Structure
+
+```
+.
+├── components/        # Custom AdminJS components (dashboard, login)
+├── models/            # Sequelize models
+├── db.js              # Database connection
+├── index.js           # Main server entry
+├── bundle.js          # AdminJS bundler
+├── .env               # Environment variables
+└── package.json
+```
+
+---
+
+## ⚙️ Installation
+
+```bash
+npm install
+```
+---
+
+## 🔑 Environment Variables
+
+Create a `.env` file in the root:
+
+```env
+PORT=3000
+
+# Admin login
+USER_EMAIL=admin@example.com
+USER_PASSWORD=securepassword
+
+# Session
+SESSION_SECRET=supersecret
+
+# Database (Supabase)
+DATABASE_URL = Your supabase postgres url
+
+---
+
+## ▶️ Running the App
+
+### Development
+
+```bash
+npm run dev
+```
+
+### Production
+
+```bash
+npm run build
+npm start
+```
+
+---
+
+## 🌐 Access Admin Panel
+
+```
+http://localhost:PORT/admin
+```
+
+Login using credentials from `.env`.
+
+---
+
+## 🧩 Admin Resources
+
+### Users
+
+* Manage user profiles
+* Social links & followers
+
+### Videos
+
+* Manage uploaded videos
+* Track likes/comments
+
+### Member Earnings
+
+* Track earnings per video/user
+
+---
+
+
+
+### Custom Components
+
+* Dashboard: `components/dashboard`
+* Login page: `components/login`
+
+---
+
+
+
+## 🛠 Scripts
+
+```bash
+npm run dev     # Run with watcher
+npm start       # Start production server
+npm run build   # Bundle AdminJS
+```
+
 ## 💰 User Earnings Dashboard (Go Backend)
 
 This project includes a lightweight **Go based real backend service** to fetch and display user earnings from Supabase.
