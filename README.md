@@ -265,6 +265,9 @@ npm start       # Start production server
 npm run build   # Bundle AdminJS
 ```
 
+[Admin Panel Link](https://linkup-admin.onrender.com/admin)
+
+---
 ## 💰 User Earnings Dashboard (Go Backend)
 
 This project includes a lightweight **Go based real backend service** to fetch and display user earnings from Supabase.
@@ -346,6 +349,8 @@ const supabaseKey = "your supabase anon key"
 
 ---
 
+
+
 ## 🧠 How It Works
 
 - Go server calls **Supabase REST API**
@@ -358,6 +363,8 @@ const supabaseKey = "your supabase anon key"
 - Renders data using Go templates
 
 ---
+
+[User Earning Dashboard Link](https://go-user-earning.onrender.com/)
 
 ## 🤝 Contributing
 
