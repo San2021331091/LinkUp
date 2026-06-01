@@ -3,7 +3,7 @@ import 'package:video_player/video_player.dart';
 
 class VideoPlayerItem extends StatefulWidget {
   final String videoUrl;
-  final String? thumbnailUrl; // optional thumbnail
+  final String? thumbnailUrl;
 
   const VideoPlayerItem({
     super.key,
@@ -16,19 +16,26 @@ class VideoPlayerItem extends StatefulWidget {
 }
 
 class _VideoPlayerItemState extends State<VideoPlayerItem> {
-  VideoPlayerController? controller;
-  bool isPlaying = false;
+  late VideoPlayerController controller;
   bool isInitialized = false;
 
-  void _initializeAndPlay() async {
-    controller = VideoPlayerController.network(widget.videoUrl);
-    await controller!.initialize();
-    controller!.setLooping(true);
-    controller!.play();
+  @override
+  void initState() {
+    super.initState();
+    _initializeVideo();
+  }
+
+  Future<void> _initializeVideo() async {
+    controller = VideoPlayerController.networkUrl(
+      Uri.parse(widget.videoUrl),
+    );
+
+    await controller.initialize();
+    await controller.setLooping(true);
+    await controller.play(); // autoplay
 
     if (mounted) {
       setState(() {
-        isPlaying = true;
         isInitialized = true;
       });
     }
@@ -36,47 +43,41 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
 
   @override
   void dispose() {
-    controller?.dispose();
+    controller.dispose();
     super.dispose();
+  }
+
+  void _togglePlayPause() {
+    if (controller.value.isPlaying) {
+      controller.pause();
+    } else {
+      controller.play();
+    }
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        if (!isPlaying) {
-          _initializeAndPlay();
-        } else {
-          // toggle play/pause if video already playing
-          if (controller!.value.isPlaying) {
-            controller!.pause();
-          } else {
-            controller!.play();
-          }
-          setState(() {});
-        }
-      },
+      onTap: isInitialized ? _togglePlayPause : null,
       child: SizedBox.expand(
-        child: isPlaying && controller != null && controller!.value.isInitialized
+        child: isInitialized
             ? FittedBox(
                 fit: BoxFit.cover,
                 child: SizedBox(
-                  width: controller!.value.size.width,
-                  height: controller!.value.size.height,
-                  child: VideoPlayer(controller!),
+                  width: controller.value.size.width,
+                  height: controller.value.size.height,
+                  child: VideoPlayer(controller),
                 ),
               )
-            : widget.thumbnailUrl != null
+            : (widget.thumbnailUrl != null
                 ? Image.network(
                     widget.thumbnailUrl!,
                     fit: BoxFit.cover,
                   )
-                : Container(
-                    color: Colors.black,
-                    child: const Center(
-                      child: Icon(Icons.play_arrow, color: Colors.white, size: 40),
-                    ),
-                  ),
+                : const Center(
+                    child: CircularProgressIndicator(),
+                  )),
       ),
     );
   }

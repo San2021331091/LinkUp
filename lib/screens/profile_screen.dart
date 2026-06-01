@@ -140,7 +140,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
         actions: [
-          IconButton(onPressed: _openEditModal, icon: const Icon(Icons.edit)),
+          IconButton(
+            onPressed: currentUserId == widget.userId ? _openEditModal : null,
+            icon: const Icon(Icons.edit),
+          ),
         ],
       ),
       body: Obx(() {
@@ -248,10 +251,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ElevatedButton.icon(
                 onPressed: () {
                   openLink(
-                    "https://go-user-earning.onrender.com/user_earning?user_id=$currentUserId",
+                    "https://go-user-earning.onrender.com/user_earning?user_id=${widget.userId}",
                   );
                 },
-                icon: const Icon(Icons.dashboard,color: Colors.white,),
+                icon: const Icon(Icons.dashboard, color: Colors.white),
                 label: Text(
                   isMe
                       ? "See your personal dashboard"
@@ -334,12 +337,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget _socialButton(IconData icon, Color color, VoidCallback onTap) {
+  Widget _socialButton(FaIconData icon, Color color, VoidCallback onTap) {
     return GestureDetector(
       onTap: onTap,
       child: CircleAvatar(
         backgroundColor: color,
-        child: Icon(icon, color: Colors.white, size: 18),
+        child: FaIcon(icon, color: Colors.white, size: 18),
       ),
     );
   }
