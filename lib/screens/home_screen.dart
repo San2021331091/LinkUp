@@ -6,7 +6,7 @@ import 'package:vibely/screens/profile_screen.dart';
 import 'package:vibely/screens/search_screen.dart';
 import 'package:vibely/screens/upload_video_screen.dart';
 import 'package:vibely/widgets/banner_widget.dart';
-import 'package:vibely/widgets/linkup_ai_wi8dget.dart';
+import 'package:vibely/widgets/linkup_ai_widget.dart';
 import 'package:vibely/widgets/upload_custom_icon.dart';
 
 class HomeScreen extends StatefulWidget {

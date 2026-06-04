@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:vibely/controller/authentication_controller.dart';
 
@@ -17,6 +18,7 @@ class _SplashScreenState extends State<SplashScreen>
   late Animation<double> _textFade;
   late Animation<Offset> _textSlide;
   final authenticationController = AuthenticationController.instanceAuth;
+  final FlutterTts flutterTts = FlutterTts();
 
   @override
   void initState() {
@@ -50,10 +52,12 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller.forward();
 
+    Future.delayed(const Duration(seconds: 5), () {
+      _speakWelcome();
+    });
 
     Future.delayed(const Duration(seconds: 10), () {
       if (!mounted) return;
-
       AuthenticationController.instanceAuth.checkUserLoggedIn();
     });
   }
@@ -62,6 +66,13 @@ class _SplashScreenState extends State<SplashScreen>
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  Future<void> _speakWelcome() async {
+    await flutterTts.setLanguage("en-US");
+    await flutterTts.setPitch(0.8);
+    await flutterTts.setSpeechRate(0.35);
+    await flutterTts.speak("Welcome to LinkUp");
   }
 
   @override
