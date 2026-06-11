@@ -39,7 +39,10 @@ class ForYouVideoScreen extends StatelessWidget {
             return Stack(
               children: [
                 /// Video
-                VideoPlayerItem(videoUrl: video.videoUrl ?? ""),
+                VideoPlayerItem(
+                  videoUrl: video.videoUrl ?? "",
+                  videoId: video.id ?? "",
+                ),
 
                 /// Top title
                 const Positioned(
@@ -137,6 +140,24 @@ class ForYouVideoScreen extends StatelessWidget {
                         );
                       }),
 
+                      const SizedBox(height: 20),
+                      Column(
+                        children: [
+                          const Icon(
+                            Icons.remove_red_eye,
+                            color: Colors.white,
+                            size: 35,
+                          ),
+                          Obx(() {
+                            final updatedVideo = controller.videos[index];
+
+                            return Text(
+                              "${updatedVideo.viewsCount ?? 0}",
+                              style: const TextStyle(color: Colors.white),
+                            );
+                          }),
+                        ],
+                      ),
                       const SizedBox(height: 20),
 
                       /// Share button

@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:vibely/controller/video_feed_controller.dart';
+import 'package:vibely/widgets/instertitial_widget.dart';
+import 'package:vibely/widgets/rewarded_ad_widget.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPlayerItem extends StatefulWidget {
   final String videoUrl;
+  final String videoId;
   final String? thumbnailUrl;
 
   const VideoPlayerItem({
     super.key,
     required this.videoUrl,
+    required this.videoId,
     this.thumbnailUrl,
   });
 
@@ -17,7 +23,10 @@ class VideoPlayerItem extends StatefulWidget {
 
 class _VideoPlayerItemState extends State<VideoPlayerItem> {
   late VideoPlayerController controller;
+
   bool isInitialized = false;
+  bool adShownForThisVideo = false;
+  bool viewTracked = false;
 
   @override
   void initState() {
@@ -31,8 +40,11 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
     );
 
     await controller.initialize();
-    await controller.setLooping(true);
-    await controller.play(); // autoplay
+    await controller.setLooping(false);
+
+    controller.addListener(_videoListener);
+
+    await controller.play();
 
     if (mounted) {
       setState(() {
@@ -41,8 +53,35 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
     }
   }
 
+  void _videoListener() {
+    if (!controller.value.isInitialized) return;
+
+    final position = controller.value.position;
+    final duration = controller.value.duration;
+
+    /// Count view after 3 seconds watched
+    if (!viewTracked && position.inSeconds >= 3) {
+      viewTracked = true;
+
+      Get.find<VideoFeedController>().incrementView(widget.videoId);
+
+      debugPrint("VIEW COUNTED: ${widget.videoId}");
+    }
+
+    /// Show ads when video finishes
+    if (!adShownForThisVideo &&
+        duration.inMilliseconds > 0 &&
+        position >= duration) {
+      adShownForThisVideo = true;
+
+      InterstitialAdWidget.loadAd();
+      RewardedAdWidget.loadAd();
+    }
+  }
+
   @override
   void dispose() {
+    controller.removeListener(_videoListener);
     controller.dispose();
     super.dispose();
   }
@@ -53,6 +92,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
     } else {
       controller.play();
     }
+
     setState(() {});
   }
 

@@ -10,7 +10,7 @@ class VideoFeedController extends GetxController {
   RxList<Video> videos = <Video>[].obs;
   RxBool isLoading = false.obs;
   RxSet<String> likedVideos = <String>{}.obs;
-
+  RxSet<String> viewedVideos = <String>{}.obs;
   RxMap<String, User> usersCache = <String, User>{}.obs;
 
   @override
@@ -147,7 +147,33 @@ class VideoFeedController extends GetxController {
       debugPrint("Error updating comments_count: $e");
     }
   }
+ /// Increment video views (once per app session)
+Future<void> incrementView(String videoId) async {
+  if (viewedVideos.contains(videoId)) return;
+  viewedVideos.add(videoId);
+  final index = videos.indexWhere((v) => v.id == videoId);
+  if (index == -1) return;
 
+  try {
+    final currentViews = videos[index].viewsCount ?? 0;
+    final newViews = currentViews + 1;
+
+    videos[index] = videos[index].copyWith(
+      viewsCount: newViews,
+    );
+
+    videos.refresh();
+
+    await supabase
+        .from('videos')
+        .update({
+          'views_count': newViews,
+        })
+        .eq('id', videoId);
+  } catch (e) {
+    debugPrint("View update error: $e");
+  }
+}
   /// Fetch videos from following users
   Future<void> fetchFollowingVideos() async {
     try {
@@ -222,9 +248,12 @@ class VideoFeedController extends GetxController {
   }
 }
 
-/// Video copyWith extension
 extension VideoCopyWith on Video {
-  Video copyWith({int? likesCount, int? commentsCount}) {
+  Video copyWith({
+    int? likesCount,
+    int? commentsCount,
+    int? viewsCount,
+  }) {
     return Video(
       id: id,
       artistSongName: artistSongName,
@@ -234,7 +263,9 @@ extension VideoCopyWith on Video {
       userId: userId,
       likesCount: likesCount ?? this.likesCount,
       commentsCount: commentsCount ?? this.commentsCount,
+      viewsCount: viewsCount ?? this.viewsCount,
       createdAt: createdAt,
     );
   }
 }
+

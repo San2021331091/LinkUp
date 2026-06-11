@@ -306,6 +306,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         height: videoItemSize,
                         child: VideoPlayerItem(
                           videoUrl: video.videoUrl ?? "",
+                          videoId: video.id ?? "",
                           thumbnailUrl: video.thumbnailUrl,
                         ),
                       );

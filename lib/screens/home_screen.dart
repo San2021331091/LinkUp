@@ -85,6 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Expanded(child: screenList[screenIndex]),
           const BannerAdWidget(),
+        
         ],
       ),
     );

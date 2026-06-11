@@ -13,8 +13,7 @@ class FollowingVideoScreen extends StatelessWidget {
   FollowingVideoScreen({super.key});
 
   final VideoFeedController controller = Get.put(VideoFeedController());
-  final String currentUserId =
-      SupabaseAuth.supabase.auth.currentUser?.id ?? "";
+  final String currentUserId = SupabaseAuth.supabase.auth.currentUser?.id ?? "";
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +48,10 @@ class FollowingVideoScreen extends StatelessWidget {
             return Stack(
               children: [
                 /// Video
-                VideoPlayerItem(videoUrl: video.videoUrl ?? ""),
+                VideoPlayerItem(
+                  videoUrl: video.videoUrl ?? "",
+                  videoId: video.id ?? "",
+                ),
 
                 /// Top title
                 const Positioned(
@@ -98,9 +100,7 @@ class FollowingVideoScreen extends StatelessWidget {
                               video.id != null && controller.isLiked(video.id!);
 
                           return Icon(
-                            isLiked
-                                ? Icons.favorite
-                                : Icons.favorite_border,
+                            isLiked ? Icons.favorite : Icons.favorite_border,
                             color: isLiked ? Colors.red : Colors.white,
                             size: 35,
                           );
@@ -108,10 +108,12 @@ class FollowingVideoScreen extends StatelessWidget {
                       ),
 
                       /// Like count
-                      Obx(() => Text(
-                            "${controller.videos[index].likesCount ?? 0}",
-                            style: const TextStyle(color: Colors.white),
-                          )),
+                      Obx(
+                        () => Text(
+                          "${controller.videos[index].likesCount ?? 0}",
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      ),
 
                       const SizedBox(height: 20),
 
@@ -137,11 +139,32 @@ class FollowingVideoScreen extends StatelessWidget {
                       ),
 
                       /// Comment count
-                      Obx(() => Text(
-                            "${controller.videos[index].commentsCount ?? 0}",
-                            style: const TextStyle(color: Colors.white),
-                          )),
+                      Obx(
+                        () => Text(
+                          "${controller.videos[index].commentsCount ?? 0}",
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      ),
 
+                      const SizedBox(height: 20),
+
+                      Column(
+                        children: [
+                          const Icon(
+                            Icons.remove_red_eye,
+                            color: Colors.white,
+                            size: 35,
+                          ),
+                          Obx(() {
+                            final updatedVideo = controller.videos[index];
+
+                            return Text(
+                              "${updatedVideo.viewsCount ?? 0}",
+                              style: const TextStyle(color: Colors.white),
+                            );
+                          }),
+                        ],
+                      ),
                       const SizedBox(height: 20),
 
                       /// Share
