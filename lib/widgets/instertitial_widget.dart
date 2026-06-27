@@ -12,10 +12,8 @@ class InterstitialAdWidget {
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) {
           _interstitialAd = ad;
-          Get.snackbar("Successful", "✅ Interstitial loaded");
         },
-        onAdFailedToLoad: (error) {
-          Get.snackbar("Error!", "❌ Interstitial failed: $error");
+        onAdFailedToLoad: (error) {        
         },
       ),
     );
@@ -24,8 +22,6 @@ class InterstitialAdWidget {
   static void showAd() {
     if (_interstitialAd != null) {
       _interstitialAd!.show();
-      Get.snackbar("Ad", "🎬 Interstitial shown");
-
       _interstitialAd = null;
       loadAd(); // preload next ad
     } else {

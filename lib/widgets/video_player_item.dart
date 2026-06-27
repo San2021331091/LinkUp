@@ -31,13 +31,13 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
   @override
   void initState() {
     super.initState();
+    InterstitialAdWidget.loadAd();
+    RewardedAdWidget.loadAd();
     _initializeVideo();
   }
 
   Future<void> _initializeVideo() async {
-    controller = VideoPlayerController.networkUrl(
-      Uri.parse(widget.videoUrl),
-    );
+    controller = VideoPlayerController.networkUrl(Uri.parse(widget.videoUrl));
 
     await controller.initialize();
     await controller.setLooping(false);
@@ -64,8 +64,6 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
       viewTracked = true;
 
       Get.find<VideoFeedController>().incrementView(widget.videoId);
-
-      debugPrint("VIEW COUNTED: ${widget.videoId}");
     }
 
     /// Show ads when video finishes
@@ -73,9 +71,10 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
         duration.inMilliseconds > 0 &&
         position >= duration) {
       adShownForThisVideo = true;
-
-      InterstitialAdWidget.loadAd();
-      RewardedAdWidget.loadAd();
+      InterstitialAdWidget.showAd();
+      RewardedAdWidget.showAd(() {
+        Get.snackbar("Reward Granted", "You watched an ad and got a reward!");
+      });
     }
   }
 
@@ -100,24 +99,28 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: isInitialized ? _togglePlayPause : null,
-      child: SizedBox.expand(
-        child: isInitialized
-            ? FittedBox(
-                fit: BoxFit.cover,
-                child: SizedBox(
-                  width: controller.value.size.width,
-                  height: controller.value.size.height,
-                  child: VideoPlayer(controller),
-                ),
-              )
-            : (widget.thumbnailUrl != null
-                ? Image.network(
-                    widget.thumbnailUrl!,
-                    fit: BoxFit.cover,
-                  )
-                : const Center(
-                    child: CircularProgressIndicator(),
-                  )),
+      child: ClipRect(
+        child: SizedBox(
+          width: double.infinity,
+          height: double.infinity,
+          child: isInitialized
+              ? FittedBox(
+                  fit: BoxFit.cover,
+                  child: SizedBox(
+                    width: controller.value.size.width,
+                    height: controller.value.size.height,
+                    child: VideoPlayer(controller),
+                  ),
+                )
+              : (widget.thumbnailUrl != null
+                    ? Image.network(
+                        widget.thumbnailUrl!,
+                        width: double.infinity,
+                        height: double.infinity,
+                        fit: BoxFit.cover,
+                      )
+                    : const Center(child: CircularProgressIndicator())),
+        ),
       ),
     );
   }

@@ -273,7 +273,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 90),
+              const SizedBox(height: 50),
+
+              Text(
+                isMe ? "Your videos" : "${user.name ?? currentUserId}'s Videos",
+                style: GoogleFonts.roboto(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(height: 20),
 
               /// VIDEO GRID
               Obx(() {
@@ -296,8 +306,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3,
-                          crossAxisSpacing: 2,
-                          mainAxisSpacing: 2,
+                          crossAxisSpacing: 8,
+                          mainAxisSpacing: 8,
                         ),
                     itemBuilder: (context, index) {
                       final video = controller.videos[index];

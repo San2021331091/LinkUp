@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:vibely/controller/comment_controller.dart';
 import 'package:vibely/models/comment.dart';
 import 'package:vibely/models/user.dart';
@@ -87,9 +88,13 @@ class _CommentSheetState extends State<CommentSheet> {
 
             const SizedBox(height: 10),
 
-            const Text(
+            Text(
               "Comments",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: GoogleFonts.poppins(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.blueAccent,
+              ),
             ),
 
             const Divider(),
@@ -99,10 +104,10 @@ class _CommentSheetState extends State<CommentSheet> {
               child: isLoading
                   ? const Center(child: CircularProgressIndicator())
                   : comments.isEmpty
-                  ? const Center(
+                  ? Center(
                       child: Text(
                         "No comments yet",
-                        style: TextStyle(color: Colors.black45),
+                        style: GoogleFonts.acme(color: Colors.black45),
                       ),
                     )
                   : ListView.builder(
@@ -114,7 +119,6 @@ class _CommentSheetState extends State<CommentSheet> {
                         final Comment comment =
                             comments[comments.length - 1 - index];
                         final user = getUser(comment.userId);
-
                         return Padding(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 12,
@@ -161,10 +165,10 @@ class _CommentSheetState extends State<CommentSheet> {
                                               user.name ?? "Unknown",
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
-                                              style: const TextStyle(
+                                              style: GoogleFonts.roboto(
                                                 fontWeight: FontWeight.bold,
-                                                color: Colors.black87,
-                                                fontSize: 14,
+                                                color: Colors.green,
+                                                fontSize: 16,
                                               ),
                                             ),
                                           ),
@@ -208,22 +212,20 @@ class _CommentSheetState extends State<CommentSheet> {
                                                         actions: [
                                                           TextButton(
                                                             onPressed: () =>
-                                                                Navigator.of(
-                                                                  context,
-                                                                ).pop(null),
+                                                                Get.back(
+                                                                  result: null,
+                                                                ),
                                                             child: const Text(
                                                               "Cancel",
                                                             ),
                                                           ),
                                                           TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.of(
-                                                                  context,
-                                                                ).pop(
+                                                            onPressed: () => Get.back(
+                                                              result:
                                                                   editController
                                                                       .text
                                                                       .trim(),
-                                                                ),
+                                                            ),
                                                             child: const Text(
                                                               "Save",
                                                             ),
@@ -271,12 +273,14 @@ class _CommentSheetState extends State<CommentSheet> {
                                       /// COMMENT TEXT
                                       Text(
                                         comment.commentText,
-                                        style: const TextStyle(fontSize: 14,color: Colors.black87),
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 14,
+                                          color: Colors.deepOrange,
+                                        ),
                                         softWrap: true,
                                       ),
 
                                       const SizedBox(height: 6),
-
                                       /// DATE
                                       Text(
                                         comment.createdAt
@@ -329,16 +333,19 @@ class _CommentSheetState extends State<CommentSheet> {
                   Expanded(
                     child: TextField(
                       controller: controller,
+                      style: GoogleFonts.acme(fontSize: 16, height: 1.3,color: Colors.red),
+                      textAlignVertical: TextAlignVertical.center,
                       decoration: InputDecoration(
                         hintText: "Add a comment...",
+                        isDense: true,
                         filled: true,
                         fillColor: Colors.white,
                         contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 10,
+                          horizontal: 16,
+                          vertical: 14,
                         ),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(25),
                           borderSide: BorderSide.none,
                         ),
                       ),

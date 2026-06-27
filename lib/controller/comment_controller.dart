@@ -101,6 +101,8 @@ class CommentController extends GetxController {
         final videoController = Get.find<VideoFeedController>();
         await videoController.incrementCommentsCount(videoId);
       }
+
+      
     } catch (e) {
       debugPrint("Error adding comment: $e");
     }

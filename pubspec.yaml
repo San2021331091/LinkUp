@@ -1,7 +1,7 @@
 name: vibely
 description: "A flutter based video sharing social network app made with flutter and supabase."
 publish_to: 'none' 
-version: 1.0.0+3
+version: 1.0.0+6
 
 environment:
   sdk: ^3.8.1

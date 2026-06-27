@@ -12,10 +12,9 @@ class RewardedAdWidget {
       rewardedAdLoadCallback: RewardedAdLoadCallback(
         onAdLoaded: (ad) {
           _rewardedAd = ad;
-          Get.snackbar("Successful", "✅ Rewarded loaded");
         },
         onAdFailedToLoad: (error) {
-          Get.snackbar("Error!", "❌ Rewarded failed: $error");
+        
         },
       ),
     );

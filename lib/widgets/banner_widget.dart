@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:vibely/config/admov_env.dart';
 
@@ -24,13 +24,11 @@ class _BannerAdWidgetState extends State<BannerAdWidget> {
       request: const AdRequest(),
       listener: BannerAdListener(
         onAdLoaded: (ad) {
-          Get.snackbar("Successful","✅ Banner loaded");
           setState(() {
             _isLoaded = true;
           });
         },
         onAdFailedToLoad: (ad, error) {
-           Get.snackbar("Error!","❌ Banner failed: $error");
           ad.dispose();
         },
       ),
@@ -51,7 +49,7 @@ class _BannerAdWidgetState extends State<BannerAdWidget> {
       return Container(
         height: 50,
         color: Colors.black12,
-        child: const Center(child: Text("Loading Ad...")),
+        child: Center(child: Text("Loading Ad...",style: GoogleFonts.roboto(),)),
       );
     }
 

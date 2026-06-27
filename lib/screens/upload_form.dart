@@ -154,15 +154,13 @@ class _UploadFormState extends State<UploadForm> {
                   context: context,
                 );
 
-                /// Show rewarded ad after upload
+                InterstitialAdWidget.showAd();
                 RewardedAdWidget.showAd(() {
-           
                   Get.snackbar(
                     "Reward Granted",
                     "You watched an ad and got a reward!",
                   );
                 });
-                InterstitialAdWidget.showAd();
               } else {
                 Get.snackbar(
                   "Missing Fields",
