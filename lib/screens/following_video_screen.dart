@@ -175,7 +175,14 @@ class FollowingVideoScreen extends StatelessWidget {
                             SharePlus.instance.share(
                               ShareParams(
                                 text:
-                                    "Watch this video on Vibely 🔥\n${video.videoUrl}",
+                          '''
+                          🌟 Enjoy this video!
+                          🎬 Watch Now
+                          ${video.videoUrl}
+                          ──────────────────
+                          Thanks for using Linkup ❤️ 
+                          ──────────────────
+                          ''',
                               ),
                             );
                           }
