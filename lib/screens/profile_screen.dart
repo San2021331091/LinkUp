@@ -178,6 +178,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              const SizedBox(height: 10),
+              Text(
+                "Email:${user.email}",
+                style: GoogleFonts.aBeeZee(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               const SizedBox(height: 20),
 
               /// COUNTS ROW

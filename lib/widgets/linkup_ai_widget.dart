@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -31,7 +32,7 @@ class _LinkUpAIViewState extends State<LinkUpAIView> {
       body: SafeArea(
         child: InAppWebView(
           initialUrlRequest: URLRequest(
-            url: WebUri("https://chat.cxgenie.ai?aid=d6af5503-9a25-4da1-b472-8b723f69ee21&lang=en"),
+            url: WebUri(dotenv.env['LINKUPAIBOTURL']!),
           ),
           onPermissionRequest: (controller, request) async {
             return PermissionResponse(

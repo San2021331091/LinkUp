@@ -4,6 +4,7 @@ import 'package:vibely/screens/following_video_screen.dart';
 import 'package:vibely/screens/for_you_video_screen.dart';
 import 'package:vibely/screens/profile_screen.dart';
 import 'package:vibely/screens/search_screen.dart';
+import 'package:vibely/screens/status_screen.dart';
 import 'package:vibely/screens/upload_video_screen.dart';
 import 'package:vibely/widgets/banner_widget.dart';
 import 'package:vibely/widgets/linkup_ai_widget.dart';
@@ -28,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     screenList = [
       ForYouVideoScreen(),
+      StatusScreen(),
       SearchScreen(),
       UploadVideoScreen(),
       FollowingVideoScreen(),
@@ -67,6 +69,10 @@ class _HomeScreenState extends State<HomeScreen> {
             label: "Home",
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.chat, size: 30),
+            label: "Status",
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.search, size: 30),
             label: "Discover",
           ),
@@ -84,8 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         children: [
           Expanded(child: screenList[screenIndex]),
-          const BannerAdWidget(),
-        
+          const BannerAdWidget(),        
         ],
       ),
     );

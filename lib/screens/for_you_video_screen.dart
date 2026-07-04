@@ -168,14 +168,7 @@ class ForYouVideoScreen extends StatelessWidget {
                             SharePlus.instance.share(
                               ShareParams(
                                 text:
-                                    '''
-                          🌟 Enjoy this video!
-                          🎬 Watch Now
-                          ${video.videoUrl}
-                          ──────────────────
-                          Thanks for using Linkup ❤️ 
-                          ──────────────────
-                          ''',
+                                    "${video.videoUrl} "
                               ),
                             );
                           }

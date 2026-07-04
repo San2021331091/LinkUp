@@ -174,15 +174,7 @@ class FollowingVideoScreen extends StatelessWidget {
                               video.videoUrl!.isNotEmpty) {
                             SharePlus.instance.share(
                               ShareParams(
-                                text:
-                          '''
-                          🌟 Enjoy this video!
-                          🎬 Watch Now
-                          ${video.videoUrl}
-                          ──────────────────
-                          Thanks for using Linkup ❤️ 
-                          ──────────────────
-                          ''',
+                                text:"${video.videoUrl}",
                               ),
                             );
                           }

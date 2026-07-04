@@ -47,7 +47,6 @@ class ProfileIcon extends StatelessWidget {
           message: userName,
           child: GestureDetector(
             onTap: () {
-              // Always pass the correct UID to profile screen
               Get.to(() => ProfileScreen(userId: userId));
             },
             child: CircleAvatar(
